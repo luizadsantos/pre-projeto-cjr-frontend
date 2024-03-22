@@ -11,7 +11,7 @@ export default function TaskDiv({
 }) {
   return (
     <div className="flex justify-between items-center border-2 border-black rounded-lg p-4">
-      <div className="flex gap-8 items-center">
+      <div className="flex gap-8 items-center w-full">
         <div className="flex gap-4">
           <button
             className={
@@ -22,9 +22,9 @@ export default function TaskDiv({
           <span className="font-semibold">Done</span>
         </div>
 
-        <span className="text-xl font-bold">{task.name}</span>
+        <span className="text-xl font-bold max-w-48 w-full">{task.name}</span>
 
-        <span className="bg-primary text-neutral font-medium border-2 border-black p-2 rounded-lg">
+        <span className="bg-primary text-neutral font-medium border-2 border-black p-2 rounded-lg text-center max-w-36 w-full">
           {categories.find((category) => category.id == task.categoryId)
             ?.name ?? "(No category)"}
         </span>
