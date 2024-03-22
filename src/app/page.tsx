@@ -25,7 +25,7 @@ export default async function Home() {
   return (
     <>
       <Header />
-      <main className="flex flex-col px-16">
+      <main className="flex flex-col px-16 pb-4">
         <div className="flex justify-between items-center py-3">
           <Pending tasks={tasks} />
 
