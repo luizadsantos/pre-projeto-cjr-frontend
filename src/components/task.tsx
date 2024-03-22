@@ -16,7 +16,7 @@ export default function TaskDiv({
           <button
             className={
               "size-6 border-2 border-black rounded-lg" +
-              (task.isActive ? "" : " bg-black")
+              (task.isActive ? "" : " bg-primary")
             }
           />
           <span className="font-semibold">Done</span>
