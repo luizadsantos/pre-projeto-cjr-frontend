@@ -13,19 +13,24 @@ export default function TaskDiv({
     <div className="flex justify-between items-center border-2 border-black rounded-lg p-4">
       <div className="flex gap-8 items-center">
         <div className="flex gap-4">
-          <button className="size-6 border-2 border-black rounded-lg" />
+          <button
+            className={
+              "size-6 border-2 border-black rounded-lg" +
+              (task.isActive ? "" : " bg-black")
+            }
+          />
           <span className="font-semibold">Done</span>
         </div>
 
         <span className="text-xl font-bold">{task.name}</span>
 
-        <span className="bg-black text-white p-2 rounded-lg">
+        <span className="bg-primary text-neutral font-medium border-2 border-black p-2 rounded-lg">
           {categories.find((category) => category.id == task.categoryId)
             ?.name ?? "(No category)"}
         </span>
       </div>
 
-      <button className="p-1 bg-red-500 border-2 border-black rounded-lg">
+      <button className="p-1 border-2 border-black hover:bg-primary hover:text-neutral rounded-lg">
         <Trash />
       </button>
     </div>
