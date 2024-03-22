@@ -5,58 +5,23 @@ import DeleteDone from "@/components/deleteDone";
 import TasksContainer from "@/components/tasksContainer";
 import { Task } from "@/models/task";
 import { Category } from "@/models/category";
+import { CategoryService } from "@/services/categoryService";
+import { TaskService } from "@/services/taskService";
 
-const tasks: Task[] = [
-  {
-    id: "1",
-    name: "task 1",
-    isActive: true,
-    categoryId: "1",
-    createdAt: "",
-    updatedAt: "",
-  },
-  {
-    id: "2",
-    name: "task 2",
-    isActive: false,
-    categoryId: "1",
-    createdAt: "",
-    updatedAt: "",
-  },
-  {
-    id: "3",
-    name: "task 3",
-    isActive: true,
-    categoryId: "2",
-    createdAt: "",
-    updatedAt: "",
-  },
-  {
-    id: "4",
-    name: "task 4",
-    isActive: true,
-    categoryId: "-1",
-    createdAt: "",
-    updatedAt: "",
-  },
-];
+export default async function Home() {
+  const categoryServices = new CategoryService();
+  const taskServices = new TaskService();
 
-const categories: Category[] = [
-  {
-    id: "1",
-    name: "category 1",
-    createdAt: "",
-    updatedAt: "",
-  },
-  {
-    id: "2",
-    name: "category 2",
-    createdAt: "",
-    updatedAt: "",
-  },
-];
+  let categories: Category[] = [];
+  let tasks: Task[] = [];
 
-export default function Home() {
+  try {
+    categories = await categoryServices.getCategories();
+    tasks = await taskServices.getTasks();
+  } catch (error) {
+    console.error(error);
+  }
+
   return (
     <>
       <Header />
