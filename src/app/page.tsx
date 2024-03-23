@@ -19,7 +19,8 @@ export default async function Home() {
     categories = await categoryServices.getCategories();
     tasks = await taskServices.getTasks();
   } catch (error) {
-    console.error(error);
+    if (error instanceof Error) console.log(error.message);
+    else console.log(error);
   }
 
   return (
