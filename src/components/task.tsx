@@ -30,7 +30,7 @@ export default function TaskDiv({
         </span>
       </div>
 
-      <button className="p-1 border-2 border-black hover:bg-primary hover:text-neutral rounded-lg">
+      <button className="btn p-1">
         <Trash />
       </button>
     </div>
