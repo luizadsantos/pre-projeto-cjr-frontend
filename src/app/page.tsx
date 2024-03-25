@@ -1,3 +1,5 @@
+"use client";
+
 import Header from "@/components/header";
 import Pending from "@/components/pending";
 import Filter from "@/components/filter";
@@ -7,21 +9,28 @@ import { Task } from "@/models/task";
 import { Category } from "@/models/category";
 import { CategoryService } from "@/services/categoryService";
 import { TaskService } from "@/services/taskService";
+import { useEffect, useState } from "react";
 
-export default async function Home() {
+export default function Home() {
   const categoryServices = new CategoryService();
   const taskServices = new TaskService();
 
-  let categories: Category[] = [];
-  let tasks: Task[] = [];
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
-  try {
-    categories = await categoryServices.getCategories();
-    tasks = await taskServices.getTasks();
-  } catch (error) {
-    if (error instanceof Error) console.log(error.message);
-    else console.log(error);
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setCategories(await categoryServices.getCategories());
+        setTasks(await taskServices.getTasks());
+      } catch (error) {
+        if (error instanceof Error) console.log(error.message);
+        else console.log(error);
+      }
+    };
+
+    fetchData();
+  });
 
   return (
     <>
