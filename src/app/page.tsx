@@ -7,30 +7,16 @@ import DeleteDone from "@/components/deleteDone";
 import TasksContainer from "@/components/tasksContainer";
 import { Task } from "@/models/task";
 import { Category } from "@/models/category";
-import { CategoryService } from "@/services/categoryService";
-import { TaskService } from "@/services/taskService";
 import { useEffect, useState } from "react";
+import fetchData from "@/utils/updateData";
 
 export default function Home() {
-  const categoryServices = new CategoryService();
-  const taskServices = new TaskService();
-
   const [categories, setCategories] = useState<Category[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setCategories(await categoryServices.getCategories());
-        setTasks(await taskServices.getTasks());
-      } catch (error) {
-        if (error instanceof Error) console.log(error.message);
-        else console.log(error);
-      }
-    };
-
-    fetchData();
-  });
+    fetchData({ setTasks, setCategories });
+  }, []);
 
   return (
     <>
@@ -44,7 +30,11 @@ export default function Home() {
           <DeleteDone />
         </div>
 
-        <TasksContainer tasks={tasks} categories={categories} />
+        <TasksContainer
+          tasks={tasks}
+          setTasks={setTasks}
+          categories={categories}
+        />
       </main>
     </>
   );
