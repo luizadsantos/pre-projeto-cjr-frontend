@@ -54,7 +54,7 @@ export default function TaskDiv({
     }
   }
 
-  // Hide/Show the confirm dialog
+  // Hide/Show the scrollbar
   document.body.style.overflow = show ? "hidden" : "auto";
 
   return (
