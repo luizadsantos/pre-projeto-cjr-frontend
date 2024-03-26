@@ -13,10 +13,11 @@ import fetchData from "@/utils/updateData";
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [filter, setFilter] = useState<"all" | "done" | "pending">("all");
 
   useEffect(() => {
-    fetchData({ setTasks, setCategories });
-  }, []);
+    fetchData({ setTasks, setCategories, filter });
+  }, [filter]);
 
   return (
     <>
@@ -25,7 +26,7 @@ export default function Home() {
         <div className="flex justify-between items-center py-3">
           <Pending tasks={tasks} />
 
-          <Filter />
+          <Filter filter={filter} setFilter={setFilter} />
 
           <DeleteDone tasks={tasks} setTasks={setTasks} />
         </div>
