@@ -26,12 +26,13 @@ export default function Home() {
         <div className="flex justify-between items-center py-3">
           <Pending tasks={tasks} />
 
-          <Filter filter={filter} setFilter={setFilter} />
+          <Filter filter={filter} setFilter={setFilter} setTasks={setTasks} />
 
-          <DeleteDone tasks={tasks} setTasks={setTasks} />
+          <DeleteDone tasks={tasks} setTasks={setTasks} filter={filter} />
         </div>
 
         <TasksContainer
+          filter={filter}
           tasks={tasks}
           setTasks={setTasks}
           categories={categories}

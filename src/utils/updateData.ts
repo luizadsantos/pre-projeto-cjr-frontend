@@ -19,8 +19,10 @@ export default async function fetchData({
   try {
     if (setTasks)
       if (!filter || filter == "all") {
+        setTasks([]);
         setTasks(await taskServices.getTasks());
       } else {
+        setTasks([]);
         setTasks(
           await (filter == "done"
             ? taskServices.getDoneTasks()

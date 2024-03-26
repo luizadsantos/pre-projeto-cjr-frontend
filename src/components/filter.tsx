@@ -1,3 +1,4 @@
+import { Task } from "@/models/task";
 import { Dispatch, SetStateAction } from "react";
 
 const filters = [
@@ -21,15 +22,20 @@ function Options() {
 export default function Filter({
   filter,
   setFilter,
+  setTasks,
 }: {
-  filter: string;
+  filter: "all" | "done" | "pending";
   setFilter: Dispatch<SetStateAction<"all" | "done" | "pending">>;
+  setTasks: Dispatch<SetStateAction<Task[]>>;
 }) {
   return (
     <select
       name="filter"
-      onChange={(e) => setFilter(e.target.value as "all" | "done" | "pending")}
-      className="appearance-none bg-neutral rounded-lg text-center w-64 py-2 font-medium hover:cursor-pointer hover:bg-primary hover:text-neutral border-2 border-black outline-none"
+      onChange={(e) => {
+        const newFilter = e.target.value as "all" | "done" | "pending";
+        setFilter(newFilter);
+      }}
+      className="appearance-none btn text-center w-64 py-2 font-medium outline-none"
     >
       <Options />
     </select>

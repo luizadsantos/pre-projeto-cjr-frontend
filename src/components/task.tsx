@@ -11,6 +11,7 @@ async function UpdateDone(
   taskState: Task,
   setTaskState: Dispatch<SetStateAction<Task>>,
   setTasks: Dispatch<SetStateAction<Task[]>>,
+  filter: "all" | "pending" | "done",
 ) {
   const taskService = new TaskService();
   const newTask = { ...taskState, isActive: !taskState.isActive } as Task;
@@ -21,7 +22,7 @@ async function UpdateDone(
     showError(error);
   }
 
-  fetchData({ setTasks });
+  fetchData({ setTasks, filter });
   setTaskState(newTask);
 }
 
@@ -29,12 +30,14 @@ export default function TaskDiv({
   task,
   categories,
   setTasks,
-  key,
+  index,
+  filter,
 }: {
   task: Task;
   categories: Category[];
   setTasks: Dispatch<SetStateAction<Task[]>>;
-  key: number;
+  index: number;
+  filter: "all" | "pending" | "done";
 }) {
   const [taskState, setTaskState] = useState(task);
   const [show, setShow] = useState(false);
@@ -44,7 +47,7 @@ export default function TaskDiv({
 
     try {
       const newTask = await taskService.deleteTask(taskState.id);
-      fetchData({ setTasks });
+      fetchData({ setTasks, filter });
       setTaskState(newTask);
     } catch (error) {
       showError(error);
@@ -63,7 +66,7 @@ export default function TaskDiv({
             'Do you really want to delete the task "' + taskState.name + '"?'
           }
           setShow={setShow}
-          key={key}
+          key={index}
         />
       ) : (
         ""
@@ -72,7 +75,7 @@ export default function TaskDiv({
         <div className="flex gap-4">
           <button
             onClick={() => {
-              UpdateDone(taskState, setTaskState, setTasks);
+              UpdateDone(taskState, setTaskState, setTasks, filter);
             }}
             className={
               "size-6 border-2 border-black rounded-lg" +

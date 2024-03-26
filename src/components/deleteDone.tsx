@@ -8,8 +8,10 @@ import { Task } from "@/models/task";
 export default function DeleteDone({
   tasks,
   setTasks,
+  filter,
 }: {
   tasks: Task[];
+  filter: "all" | "pending" | "done";
   setTasks: Dispatch<SetStateAction<Task[]>>;
 }) {
   const [show, setShow] = useState(false);
@@ -19,7 +21,7 @@ export default function DeleteDone({
 
     try {
       await taskService.deleteDoneTasks();
-      fetchData({ setTasks });
+      fetchData({ setTasks, filter });
     } catch (error) {
       showError(error);
     }
