@@ -27,7 +27,7 @@ export default function Home() {
 
           <Filter />
 
-          <DeleteDone />
+          <DeleteDone tasks={tasks} setTasks={setTasks} />
         </div>
 
         <TasksContainer
