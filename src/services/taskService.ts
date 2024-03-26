@@ -96,6 +96,16 @@ export class TaskService {
     return response.data.data;
   }
 
+  async getDoneTasks() {
+    const response = (await axiosInstance.get(
+      "/task/nonactive",
+    )) as ResponseTasks;
+
+    throwError(response);
+
+    return response.data.data;
+  }
+
   async getTaskByCategory(categoryId: number) {
     const response = (await axiosInstance.get(
       "/task/category/" + categoryId.toString(),
