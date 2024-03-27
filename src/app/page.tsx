@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <>
-      <Header />
+      <Header categories={categories} setTasks={setTasks} filter={filter} />
       <main className="flex flex-col px-16 pb-4">
         <div className="flex justify-between items-center py-3">
           <Pending tasks={tasks} />
