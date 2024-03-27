@@ -1,22 +1,6 @@
 import { CreateTask, Task, UpdateTask } from "@/models/task";
-import axios from "axios";
-
-export const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
-});
-
-function throwError(response: {
-  status: number;
-  error?: string;
-  message?: string;
-}) {
-  if (response.status !== 200)
-    throw new Error(
-      response.error && response.message
-        ? response.status + ": " + response.error + "\n" + response.message
-        : "Failed to fetch tasks",
-    );
-}
+import { throwError } from "@/utils/errorHandling";
+import { axiosInstance } from "@/utils/updateData";
 
 interface ResponseTask {
   data: { data: Task };

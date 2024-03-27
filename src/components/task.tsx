@@ -2,7 +2,7 @@ import Trash from "@/icons/trash";
 import { Category } from "@/models/category";
 import { Task } from "@/models/task";
 import { TaskService } from "@/services/taskService";
-import showError from "@/utils/errorHandling";
+import { showError } from "@/utils/errorHandling";
 import fetchData from "@/utils/updateData";
 import { Dispatch, SetStateAction, useState } from "react";
 import Confirm from "./confirm";

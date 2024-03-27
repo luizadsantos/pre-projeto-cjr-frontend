@@ -3,7 +3,12 @@ import { Task } from "@/models/task";
 import { CategoryService } from "@/services/categoryService";
 import { TaskService } from "@/services/taskService";
 import { Dispatch, SetStateAction } from "react";
-import showError from "./errorHandling";
+import { showError } from "./errorHandling";
+import axios from "axios";
+
+export const axiosInstance = axios.create({
+  baseURL: "http://localhost:3000",
+});
 
 export default async function fetchData({
   filter,

@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import Confirm from "./confirm";
 import { TaskService } from "@/services/taskService";
 import fetchData from "@/utils/updateData";
-import showError from "@/utils/errorHandling";
+import { showError } from "@/utils/errorHandling";
 import { Task } from "@/models/task";
 
 export default function DeleteDone({
@@ -32,7 +32,7 @@ export default function DeleteDone({
     .map((task) => task.name)
     .join(", ");
 
-  // Hide/Show the confirm dialog
+  // Hide/Show the scrollbar
   document.body.style.overflow = show ? "hidden" : "auto";
 
   return (
