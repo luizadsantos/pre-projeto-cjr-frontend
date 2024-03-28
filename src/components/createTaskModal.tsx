@@ -20,11 +20,13 @@ function Options({ categories }: { categories: Category[] }) {
 export default function CreateTaskModal({
   setTasks,
   setShow,
+  theme,
   filter,
   categories,
 }: {
   setTasks: Dispatch<SetStateAction<Task[]>>;
   setShow: Dispatch<SetStateAction<boolean>>;
+  theme: "light" | "dark";
   filter: "all" | "pending" | "done";
   categories: Category[];
 }) {
@@ -60,13 +62,21 @@ export default function CreateTaskModal({
   };
 
   return (
-    <div className="fixed left-0 top-0 w-full flex items-center justify-center h-full overflow-hidden bg-opacity-40 bg-black">
+    <div
+      className={`fixed left-0 top-0 w-full flex items-center justify-center h-full overflow-hidden bg-opacity-40 ${
+        theme == "light" ? "bg-black" : "bg-neutral"
+      }`}
+    >
       <form
         onSubmit={handleSubmit}
-        className="relative flex flex-col gap-4 p-4 rounded-lg items-center opacity-100 w-2/3 bg-neutral"
+        className={`relative flex flex-col gap-4 p-4 rounded-lg items-center opacity-100 w-2/3 ${
+          theme == "light" ? "bg-neutral" : "bg-black"
+        }`}
       >
         <button
-          className="absolute top-2 right-2 btn px-2.5 py-1 font-bold"
+          className={`absolute top-2 right-2 ${
+            theme == "light" ? "btn" : "btn-dark"
+          } px-2.5 py-1 font-bold`}
           onClick={() => {
             setShow(false);
           }}
@@ -83,7 +93,11 @@ export default function CreateTaskModal({
             name="name"
             required
             onInput={handleInput}
-            className="border-2 border-black p-1 rounded-lg focus:bg-primary"
+            className={`border-2 p-1 rounded-lg ${
+              theme == "light"
+                ? "focus:bg-primary border-black"
+                : "focus:bg-gray-800 border-neutral"
+            }`}
           />
         </div>
 
@@ -92,14 +106,19 @@ export default function CreateTaskModal({
           <select
             name="categoryId"
             onChange={handleInput}
-            className="appearance-none btn text-center w-64 py-2 font-medium outline-none"
+            className={`appearance-none ${
+              theme == "light" ? "btn" : "btn-dark"
+            } text-center w-64 py-2 font-medium outline-none`}
           >
             <option value={-1}>(No category)</option>
             <Options categories={categories} />
           </select>
         </div>
 
-        <button type="submit" className="btn py-2 px-8">
+        <button
+          type="submit"
+          className={`${theme == "light" ? "btn" : "btn-dark"} py-2 px-8`}
+        >
           Send
         </button>
       </form>

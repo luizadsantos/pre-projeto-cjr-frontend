@@ -25,3 +25,7 @@
 .btn {
   @apply border-2 border-black rounded-lg bg-neutral hover:bg-primary hover:text-neutral hover:cursor-pointer;
 }
+
+.btn-dark {
+  @apply text-black border-2 hover:border-neutral rounded-lg bg-neutral hover:bg-gray-800 border-black hover:text-black hover:cursor-pointer;
+}

@@ -6,10 +6,12 @@ import { showError } from "@/utils/errorHandling";
 import { Task } from "@/models/task";
 
 export default function DeleteDone({
+  theme,
   tasks,
   setTasks,
   filter,
 }: {
+  theme: "light" | "dark";
   tasks: Task[];
   filter: "all" | "pending" | "done";
   setTasks: Dispatch<SetStateAction<Task[]>>;
@@ -39,6 +41,7 @@ export default function DeleteDone({
     <>
       {show && (
         <Confirm
+          theme={theme}
           execute={deleteDoneTasks}
           message={"Do you really want to delete the tasks " + tasksDone + "?"}
           setShow={setShow}
@@ -48,7 +51,9 @@ export default function DeleteDone({
         onClick={() => {
           setShow(true);
         }}
-        className="btn font-bold px-6 py-0.5"
+        className={`${
+          theme == "light" ? "btn" : "btn-dark"
+        } font-bold px-6 py-0.5`}
       >
         Delete done
       </button>

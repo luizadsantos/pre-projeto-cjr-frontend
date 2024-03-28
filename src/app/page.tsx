@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import fetchData from "@/utils/updateData";
 
 export default function Home() {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [categories, setCategories] = useState<Category[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState<"all" | "done" | "pending">("all");
@@ -19,19 +20,34 @@ export default function Home() {
     fetchData({ setTasks, setCategories, filter });
   }, [filter]);
 
+  document.body.style.backgroundColor = theme == "light" ? "#fefefe" : "#000";
+  document.body.style.color = theme == "light" ? "#000" : "#fefefe";
+
   return (
     <>
-      <Header categories={categories} setTasks={setTasks} filter={filter} />
+      <Header
+        theme={theme}
+        setTheme={setTheme}
+        categories={categories}
+        setTasks={setTasks}
+        filter={filter}
+      />
       <main className="flex flex-col px-16 pb-4">
         <div className="flex justify-between items-center py-3">
           <Pending tasks={tasks} />
 
-          <Filter filter={filter} setFilter={setFilter} setTasks={setTasks} />
+          <Filter theme={theme} setFilter={setFilter} />
 
-          <DeleteDone tasks={tasks} setTasks={setTasks} filter={filter} />
+          <DeleteDone
+            theme={theme}
+            tasks={tasks}
+            setTasks={setTasks}
+            filter={filter}
+          />
         </div>
 
         <TasksContainer
+          theme={theme}
           filter={filter}
           tasks={tasks}
           setTasks={setTasks}

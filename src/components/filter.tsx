@@ -20,13 +20,11 @@ function Options() {
 }
 
 export default function Filter({
-  filter,
+  theme,
   setFilter,
-  setTasks,
 }: {
-  filter: "all" | "done" | "pending";
+  theme: "light" | "dark";
   setFilter: Dispatch<SetStateAction<"all" | "done" | "pending">>;
-  setTasks: Dispatch<SetStateAction<Task[]>>;
 }) {
   return (
     <select
@@ -35,7 +33,9 @@ export default function Filter({
         const newFilter = e.target.value as "all" | "done" | "pending";
         setFilter(newFilter);
       }}
-      className="appearance-none btn text-center w-64 py-2 font-medium outline-none"
+      className={`appearance-none ${
+        theme == "light" ? "btn" : "btn-dark"
+      } text-center w-64 py-2 font-medium outline-none`}
     >
       <Options />
     </select>
