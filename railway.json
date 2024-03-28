@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "$schema": "https://railway.app/railway.schema.json",
     "build": {
@@ -9,4 +10,17 @@
       "restartPolicyType": "ON_FAILURE",
       "restartPolicyMaxRetries": 10
     }
+=======
+{
+    "$schema": "https://railway.app/railway.schema.json",
+    "build": {
+      "builder": "NIXPACKS"
+    },
+    "deploy": {
+      "numReplicas": 1,
+      "sleepApplication": false,
+      "restartPolicyType": "ON_FAILURE",
+      "restartPolicyMaxRetries": 10
+    }
+>>>>>>> e563d14cd109d5460c95b44d7e3c1a5719257791
   }
