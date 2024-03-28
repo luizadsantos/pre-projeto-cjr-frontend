@@ -34,7 +34,8 @@ export default function CreateTaskModal({
   } as CreateTask);
 
   const handleInput = (e: any) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    if (name == "categoryId") value = parseInt(value as string);
     setFormData({
       ...formData,
       [name]: value,
@@ -89,7 +90,7 @@ export default function CreateTaskModal({
         <div className="flex flex-col gap-1">
           <label htmlFor="input-categoryId">Category</label>
           <select
-            name="filter"
+            name="categoryId"
             onChange={handleInput}
             className="appearance-none btn text-center w-64 py-2 font-medium outline-none"
           >
