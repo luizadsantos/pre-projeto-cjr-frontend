@@ -7,7 +7,7 @@ import { showError } from "./errorHandling";
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://localhost:3001",
 });
 
 export default async function fetchData({
